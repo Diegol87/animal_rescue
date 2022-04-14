@@ -12,8 +12,8 @@ CREATE TABLE usuarios(
     telefono VARCHAR(255) NOT NULL,
     edad VARCHAR(255) NOT NULL,
     rol VARCHAR(255) NOT NULL,
-    foreign key(genero_usuario_id) references usuarios(id),
-    foreign key(comunas_id_fk) references usuarios(id),
+    foreign key(genero_usuario_id) references genero_usuario(id),
+    foreign key(comunas_id_fk) references comunas(id),
 )
 
 --2. tabla genero_usuario
@@ -27,7 +27,7 @@ CREATE TABLE comunas(
     regiones_id_fk INT,
     id SERIAL PRIMARY KEY,
     comuna VARCHAR(255) NOT NULL,
-    foreign key(regiones_id_fk) references comunas(id),
+    foreign key(regiones_id_fk) references regiones(id),
 )
 
 --4. tabla regiones
@@ -47,9 +47,9 @@ CREATE TABLE publicacion_animal(
     edad_animal VARCHAR(255) NOT NULL,
     descripcion VARCHAR(255) NOT NULL,
     foto VARCHAR(255) NOT NULL,
-    foreign key(usuarios_id_fk) references publicacion_animal(id),
-    foreign key(genero_animal_fk) references publicacion_animal(id),
-    foreign key(estado_fk) references publicacion_animal(id),
+    foreign key(usuarios_id_fk) references usuarios(id),
+    foreign key(genero_animal_fk) references genero_animal(id),
+    foreign key(estado_fk) references estado(id),
 )
 
 --6. tabla genero_animal
@@ -71,6 +71,6 @@ CREATE TABLE adopcion(
     publicacion_animal_id_fk INT,
     nombre_animal VARCHAR(255) NOT NULL,
     mensaje VARCHAR(255) NOT NULL,
-    foreign key(usuarios_id_fk) references adopcion(id),
-    foreign key(publicacion_animal_id_fk) references adopcion(id),
+    foreign key(usuarios_id_fk) references usuarios(id),
+    foreign key(publicacion_animal_id_fk) references publicacion_animal(id),
 )
