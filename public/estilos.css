@@ -1,0 +1,41 @@
+body {
+    background: white;
+    font-family: 'Lemonada', cursive;
+    color: #1dc4ce;
+}
+
+.iniciar {
+    font-weight: 700;
+    font-size: 3rem;
+}
+
+.form-group {
+    font-weight: 300;
+    font-size: 1.5rem;
+}
+
+.navbar, .footer1 {
+    background: #1dc4ce;
+}
+
+.btn {
+    background: #098b94;
+}
+
+.nav-link2 {
+    text-decoration: none;
+    color: white;
+    padding: 0.75rem;
+    font-weight: 700;
+}
+
+.footer {
+    font-size: 0.75rem;
+    color: white;
+    background: #1dc4ce;
+    display: flex;
+}
+
+
+
+

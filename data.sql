@@ -1,4 +1,18 @@
--- 1. Tabla usuarios
+--1. tabla genero_usuario
+CREATE TABLE genero_usuario(
+    id SERIAL PRIMARY KEY,
+    sexo VARCHAR(255) NOT NULL,
+)
+
+--2. tabla de comunas
+CREATE TABLE comunas(
+    regiones_id_fk INT,
+    id SERIAL PRIMARY KEY,
+    comuna VARCHAR(255) NOT NULL,
+    foreign key(regiones_id_fk) references regiones(id),
+)
+
+--3.. Tabla usuarios
 CREATE TABLE usuarios(
     genero_usuario_id_fk INT,
     comunas_id_fk INT,
@@ -14,20 +28,6 @@ CREATE TABLE usuarios(
     rol VARCHAR(255) NOT NULL,
     foreign key(genero_usuario_id) references genero_usuario(id),
     foreign key(comunas_id_fk) references comunas(id),
-)
-
---2. tabla genero_usuario
-CREATE TABLE genero_usuario(
-    id SERIAL PRIMARY KEY,
-    sexo VARCHAR(255) NOT NULL,
-)
-
---3. tabla de comunas
-CREATE TABLE comunas(
-    regiones_id_fk INT,
-    id SERIAL PRIMARY KEY,
-    comuna VARCHAR(255) NOT NULL,
-    foreign key(regiones_id_fk) references regiones(id),
 )
 
 --4. tabla regiones
