@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const { create } = require('express-handlebars')
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -17,8 +17,8 @@ app.engine(".hbs", hbs.engine)
 app.set("view engine", ".hbs")
 app.set("views", "./views")
 
-//app.use("/api/v1/", require('./routes/users.route'))
+app.use("/api/v1/", require('./routes/users.route'))
 app.use("/", require('./routes/vistas.route'))
 
-app.listen(PORT, console.log("Se levanta el servidor en http://localhost:8080"))
+app.listen(PORT, console.log("Se levanta el servidor en http://localhost:3000"))
 

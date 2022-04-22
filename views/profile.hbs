@@ -1,0 +1,63 @@
+{{> navbarProfile}}
+
+<div class="container my-5 text-center border rounded bg-light">
+    <h3 class="iniciar text-center mt-5">Perfil</h3>
+    <form id="formId" class="form text-center">
+        <div class="row mt-5 mb-4">
+            <div class="col text-start">
+                <label>Nombre</label>
+                <input id="name" type="text" name="nombre" class="form-control mt-2" placeholder="Ingresa tu nombre" aria-label="Ingresa tus apellidos">
+            </div>
+            <div class="col text-start">
+                <label>Apellido</label>
+                <input id="lastname" type="text" name="apellido" class="form-control mt-2" placeholder="Ingrese sus apellidos" aria-label="Last name">
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col text-start">
+                <label>Edad</label>
+                <input id="age" type="text" name="edad" class="form-control mt-2" placeholder="Ingresa tu edad" aria-label="Ingrese su edad">
+            </div>
+            <div class="col text-start">
+                <label>Telefono</label>
+                <input id="phone" type="text" name="telefono" class="form-control mt-2" placeholder="Ingrese su numero de telefono" aria-label="Telefono">
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col text-start">
+                <label>Direccion</label>
+                <input id="adress" type="text" name="direccion" class="form-control mt-2" placeholder="Ingrese su direccion" aria-label="Direccion">
+            </div>
+            <div class="col text-start">
+                <label>Email</label>
+                <input id="email" type="text" name="email" class="form-control mt-2" placeholder="Ingrese su correo electronico" aria-label="email">
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col text-start">
+                <label>Contraseña</label>
+                <input id="password" type="password" name="password" class="form-control mt-2" placeholder="Ingrese una contraseña segura" aria-label="Ingrese su contraseña">
+            </div>
+            <div class="col text-start">
+                <label>Repita su contraseña</label>
+                <input id="repeat-password" type="password" name="password_confirm" class="form-control mt-2" placeholder="Confirme su contraseña" aria-label="Confirmar contraseña">
+            </div>
+        </div>
+        
+        <button style="color: white;" class="btn btn-warning my-3">Actualizar</button>
+        
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', async() => {
+        if(!localStorage.getItem('token')) {
+            window.location.href = "/login"
+        }
+
+        const token = localStorage.getItem('token')
+    })
+
+    
+     
+</script>

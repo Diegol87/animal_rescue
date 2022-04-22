@@ -2,7 +2,7 @@
 
 <div class="container my-5 pb-5 border rounded bg-light">
   <h3 class="iniciar text-center mt-4 pt-5">Iniciar Sesion</h3>
-  <form class="form text-center" id="formulario">
+  <form class="form text-center" id="formId">
     <div class="form-group">
       <div class="form-group mt-4 mb-4">
         <label class="w-50 text-start">Usuario</label>
@@ -13,8 +13,35 @@
         <input class="form-control w-50 m-auto my-3" type="password" name="password" placeholder="Ingresa tu contraseña" />
       </div>
     </div>
-    <button class="btn btn-success my-3">Ingresar</button>
+    <button style="color: white; background: #098B94" class="btn btn-info my-3">Ingresar</button>
     <p>¿Aún no tienes cuenta? <a href="/register">Regístrate</a></p>
   </form>
 </div>
 
+<script>
+  const form = document.getElementById('formId')
+
+  form.addEventListener('submit', async(e) => {
+    e.preventDefault()
+
+    const formData = new FormData(form)
+
+    try {
+      const response = await fetch('/api/v1/login', {
+        method: 'post',
+        body: formData
+      })
+
+      const data = await response.json()
+      if(!data.ok) {
+        return alert(data.msg)
+      }
+
+      localStorage.setItem('token', data.token)
+      window.location.href = "/listaAdopcion"
+
+    } catch(error) {
+      console.log(error)
+    }
+  })
+</script>

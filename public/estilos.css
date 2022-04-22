@@ -18,10 +18,6 @@ body {
     background: #1dc4ce;
 }
 
-.btn {
-    background: #098b94;
-}
-
 .nav-link2 {
     text-decoration: none;
     color: white;
@@ -36,6 +32,16 @@ body {
     display: flex;
 }
 
-
-
-
+h2 {
+    width: 100%; 
+    text-align: center; 
+    border-bottom: 1.5px solid #1dc4ce; 
+    line-height: 0.1em;
+    margin: 10px 0 20px; 
+    color: grey;
+ } 
+ 
+ h2 span { 
+     background:#fff; 
+     padding:0 10px; 
+ }

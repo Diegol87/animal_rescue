@@ -8,7 +8,7 @@
       <img src="/img/adopta1.jpg" class="card-img-top" alt="...">
       <div class="card-body">
         <div class="text-center mb-4 mt-2">
-        <a href="#" class="btn btn-primary"><img src="/img/heart-solid 15.png" alt=""> Adóptame!</a>
+        <a href="#" style="color: white; background: #098B94" class="btn btn-primary"><img src="/img/heart-solid 15.png" alt=""> Adóptame!</a>
         </div>
         <p>Sexo: Hembra</p>
         <p>Edad: 6 años</p>
@@ -27,7 +27,7 @@
       <img src="/img/adopta2.jpg" class="card-img-top" alt="...">
       <div class="card-body">
         <div class="text-center mb-4 mt-2">
-        <a href="#" class="btn btn-primary"><img src="/img/heart-solid 15.png" alt=""> Adóptame!</a>
+        <a href="#" style="color: white; background: #098B94" class="btn btn-primary"><img src="/img/heart-solid 15.png" alt=""> Adóptame!</a>
         </div>
         <p>Sexo: Macho</p>
         <p>Edad: 8 años</p>
@@ -46,7 +46,7 @@
       <img src="/img/adopta3.jpg" class="card-img-top" alt="...">
       <div class="card-body">
         <div class="text-center mb-4 mt-2">
-        <a href="#" class="btn btn-primary"><img src="/img/heart-solid 15.png" alt=""> Adóptame!</a>
+        <a href="#" style="color: white; background: #098B94" class="btn btn-primary"><img src="/img/heart-solid 15.png" alt=""> Adóptame!</a>
         </div>
         <p>Sexo: Hembra</p>
         <p>Edad: 4 años</p>
@@ -65,7 +65,7 @@
       <img src="/img/adopta4.jpg" class="card-img-top" alt="...">
       <div class="card-body">
         <div class="text-center mb-4 mt-2">
-        <a href="#" class="btn btn-primary"><img src="/img/heart-solid 15.png" alt=""> Adóptame!</a>
+        <a href="#" style="color: white; background: #098B94" class="btn btn-primary"><img src="/img/heart-solid 15.png" alt=""> Adóptame!</a>
         </div>
        <p>Sexo: Macho</p>
         <p>Edad: 6 meses</p>
@@ -84,7 +84,7 @@
       <img src="/img/adopta5.jpg" class="card-img-top" alt="...">
       <div class="card-body">
         <div class="text-center mb-4 mt-2">
-        <a href="#" class="btn btn-primary"><img src="/img/heart-solid 15.png" alt=""> Adóptame!</a>
+        <a href="#" style="color: white; background: #098B94" class="btn btn-primary"><img src="/img/heart-solid 15.png" alt=""> Adóptame!</a>
         </div>
         <p>Sexo: Macho</p>
         <p>Edad: 3 años</p>
@@ -103,7 +103,7 @@
       <img src="/img/adopta6.jpg" class="card-img-top" alt="...">
       <div class="card-body">
         <div class="text-center mb-4 mt-2">
-        <a href="#" class="btn btn-primary"><img src="/img/heart-solid 15.png" alt=""> Adóptame!</a>
+        <a href="#" style="color: white; background: #098B94" class="btn btn-primary"><img src="/img/heart-solid 15.png" alt=""> Adóptame!</a>
         </div>
         <p>Sexo: Hembra</p>
         <p>Edad: 2 años</p>
@@ -118,3 +118,11 @@
   </div>
 </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', async() => {
+    if(!localStorage.getItem('token')) {
+      window.location.href = '/login'
+    }
+  })  
+</script>

@@ -41,8 +41,15 @@
             <input class="form-control form-control-sm" id="formFileSm" type="file">
         </div>
         
-        <button class="btn btn-success my-3">Postular</button>
+        <button style="color: white; background: #098B94" class="btn btn-success my-3">Postular</button>
         
     </form>
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded',async() => {
+        if(!localStorage.getItem('token')) {
+            window.location.href = '/login'
+        }
+    })
+</script>

@@ -6,5 +6,6 @@ router.get("/register", (req, res) => res.render("register"))
 router.get("/postulation", (req, res) => res.render("postulation"))
 router.get("/", (req, res) => res.render("home"))
 router.get("/listaAdopcion", (req, res) => res.render("listaAdopcion"))
+router.get("/profile", (req, res) => res.render("profile"))
 
 module.exports = router
