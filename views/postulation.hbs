@@ -1,16 +1,16 @@
-{{> navbarLoguedin}}
+{{> navbarPostulation}}
 
 <div class="container my-5 text-center border rounded bg-light">
     <h3 class="iniciar text-center mt-5">Sube tu postulacion!</h3>
-    <form class="form text-center">
+    <form id="formAnimal" class="form text-center">
         <div class="row mt-5 mb-4">
             <div class="col text-start">
                 <label>Nombre</label>
-                <input type="text" class="form-control mt-2" placeholder="Ingresa el nombre de la mascota" aria-label="Ingresa nombre de la mascota">
+                <input type="text" name="nombre_animal" class="form-control mt-2" placeholder="Ingresa el nombre de la mascota" aria-label="Ingresa nombre de la mascota">
             </div>
             <div class="col text-start">
                 <label for="disabledSelect" class="form-label">Sexo</label>
-                <select id="disabledSelect" class="form-select" placeholder="Selecciona el sexo">
+                <select id="disabledSelect" name="genero_animal" class="form-select" placeholder="Selecciona el sexo">
                 <option>Selecciona el sexo de la mascota</option>
                 <option>Macho</option>
                 <option>Hembra</option>
@@ -20,25 +20,25 @@
         <div class="row mb-4">
             <div class="col text-start">
                 <label>Edad</label>
-                <input type="text" class="form-control mt-2" placeholder="Ingresa el tamaño de la mascota" aria-label="Edad de la mascota">
+                <input type="text" name="edad_animal" class="form-control mt-2" placeholder="Ingresa el tamaño de la mascota" aria-label="Edad de la mascota">
             </div>
             <div class="col text-start">
                 <label for="disabledSelect" class="form-label">Tamaño</label>
-                <select id="disabledSelect" class="form-select" aria-placeholder="hola">
+                <select id="disabledSelect" name="tamano" class="form-select" aria-placeholder="hola">
                 <option>Selecciona el tamaño de la mascota</option>
                 <option>Pequeño</option>
-                <option>Medio</option>
+                <option>Mediano</option>
                 <option>Grande</option>
                 </select>
             </div>
         </div>
         <div class="mb-3 text-start">
             <label for="exampleFormControlTextarea1" class="form-label">Descripcion</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Escribe una descipcion de la mascota la cual postulas para su adopcion"></textarea>
+            <textarea class="form-control" name="descripcion" id="exampleFormControlTextarea1" rows="3" placeholder="Escribe una descipcion de la mascota la cual postulas para su adopcion"></textarea>
         </div>
         <div class="mb-3 w-50 text-start">
             <label for="formFileSm" class="form-label">Foto de la mascota</label>
-            <input class="form-control form-control-sm" id="formFileSm" type="file">
+            <input class="form-control form-control-sm" id="formFileSm" type="file" name="foto">
         </div>
         
         <button style="color: white; background: #098B94" class="btn btn-success my-3">Postular</button>
@@ -47,9 +47,39 @@
 </div>
 
 <script>
+
     document.addEventListener('DOMContentLoaded',async() => {
         if(!localStorage.getItem('token')) {
             window.location.href = '/login'
         }
+
+        const form = document.getElementById('formAnimal')
+        
+        form.addEventListener('submit', async(e) => {
+            e.preventDefault()
+
+            const formData = new FormData(form)
+
+            try {
+                const response = await fetch('api/v1/animal', {
+                    method: 'post',
+                    body: formData
+                })
+
+                const data = await response.json()
+
+                if(!data.ok) {
+                    return alert(data.msg)
+                }
+
+                localStorage.setItem('token', data .token)
+                window.location.href = "/listaAdopcion"
+
+            } catch(error) {
+                console.log(error)
+            }
+        })
+
     })
+
 </script>
