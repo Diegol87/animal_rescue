@@ -1,4 +1,4 @@
-const { createUserDB, getUserDB, getUseridDB, editUserDB, createAnimalDB, getAnimalsDB } = require('../database/db')
+const { createUserDB, getUserDB, getUseridDB, editUserDB, createAnimalDB, getAnimalsDB, deleteAnimalDB } = require('../database/db')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const path = require('path')
@@ -150,4 +150,24 @@ const getAnimals = async(req, res) => {
     })
 }
 
-module.exports = { createUser, loginUser, getUser, editUser, createAnimal, getAnimals }
+const deleteAnimal = async(req, res) => {
+    const { id } = req.params
+
+    try {
+        const response = await deleteAnimalDB(id)
+        if(!response.ok) {
+            throw new Error(response.error)
+        }
+        return res.json({
+            ok: true
+        })
+
+    } catch (error) {
+        return res.status(400).json({
+            ok: false,
+            msg: error.message
+        })
+    }
+}
+
+module.exports = { createUser, loginUser, getUser, editUser, createAnimal, getAnimals, deleteAnimal }

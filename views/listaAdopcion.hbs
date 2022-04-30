@@ -29,9 +29,6 @@
               <p class="card-text">Descripcion:</p>
               <p style="color: gray;">${a.descripcion}</p>
             </div>
-            <div class="card-footer">
-              <p><img src="/img/heart-solid 15.png" alt=""> 1</p>
-            </div>
           </div>
         </div>
       `
@@ -56,14 +53,14 @@
       const data = await response.json()
 
       if(!data.ok) {
-        window.location.href = "/login"
+        //window.location.href = "/login"
       }
 
       pintarDatos(data.animals)
 
     } catch(error) {
       localStorage.removeItem('token')
-      window.location.href = "/login"
+      //window.location.href = "/login"
     }
   })  
 </script>

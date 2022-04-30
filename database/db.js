@@ -9,6 +9,7 @@ const pool = process.env.DATABASE_URL
 
     : new Pool({connectionString})
 
+// Crear un usuario a tráves de registro
 const createUserDB = async({ nombre, apellido, edad, telefono, direccion, email, hashPassword }) => {
     const client = await pool.connect()
 
@@ -40,6 +41,7 @@ const createUserDB = async({ nombre, apellido, edad, telefono, direccion, email,
     }
 }
 
+//Crear una mascota a tráves de postulación
 const createAnimalDB = async({ usuarios_id_fk, nombre_animal, genero_animal, tamano, edad_animal, descripcion, pathFoto }) => {
     const client = await pool.connect()
 
@@ -66,6 +68,7 @@ const createAnimalDB = async({ usuarios_id_fk, nombre_animal, genero_animal, tam
     }
 }
 
+//Poder traer la información del usuario para poder realizar el login
 const getUserDB = async(email) => {
     const client = await pool.connect()
     
@@ -92,6 +95,7 @@ const getUserDB = async(email) => {
     }
 }
 
+//Traer el usuarios a tráves del id a la vista profile
 const getUseridDB = async(id) => {
     const client = await pool.connect()
 
@@ -116,6 +120,7 @@ const getUseridDB = async(id) => {
     }
 }
 
+//Para poder editar el usuario en la vista de profile
 const editUserDB = async({ id, nombre, apellido, edad, telefono, direccion }) => {
     const client = await pool.connect()
 
@@ -141,11 +146,12 @@ const editUserDB = async({ id, nombre, apellido, edad, telefono, direccion }) =>
     }
 }
 
+//Traer el listado completo de animales para dejarlos dentro de una tabla en la vista de postulaciones.
 const getAnimalsDB = async() => {
     const client = await pool.connect()
 
     try {
-        const response = await client.query('SELECT nombre_animal, genero_animal, edad_animal, tamano, descripcion, foto FROM publicacion_animal')
+        const response = await client.query('SELECT id, nombre_animal, genero_animal, edad_animal, tamano, descripcion, foto FROM publicacion_animal')
         return {
             ok: true,
             animals: response.rows
@@ -161,4 +167,30 @@ const getAnimalsDB = async() => {
     }
 }
 
-module.exports = { createUserDB, getUserDB, getUseridDB, editUserDB, createAnimalDB, getAnimalsDB }
+//Para poder eliminar una postulación en la vista de adminsitrador
+const deleteAnimalDB = async(id) => {
+    const client = await pool.connect()
+
+    const query = {
+        text: 'DELETE FROM publicacion_animal WHERE id = $1',
+        values: [id]
+    }
+
+    try {
+       await client.query(query)
+
+        return {
+            ok: true,
+        }
+        
+    } catch (error) {
+        return {
+            ok: false,
+            msg: error.message
+        }
+    } finally {
+        client.release()
+    }
+}
+
+module.exports = { createUserDB, getUserDB, getUseridDB, editUserDB, createAnimalDB, getAnimalsDB, deleteAnimalDB }

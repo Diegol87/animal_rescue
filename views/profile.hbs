@@ -58,6 +58,7 @@
             })
 
             const data = await response.json()
+            console.log(data)
 
             myId = data.user.id
             document.getElementById('name').value = data.user.nombre

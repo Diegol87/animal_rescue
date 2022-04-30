@@ -1,0 +1,123 @@
+ {{> navbarAdministrator}}
+ 
+ <h1 class="text-center mt-5">Vista Administrador</h1>
+
+    <div id="alert"></div>
+
+    <div class="my-5 text-center">
+      <h3>Lista de adopciones</h3>
+
+      <hr class="w-200 mt-4"/>
+
+      <table class="table w-50 m-auto">
+        <thead>
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Foto</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Tamaño</th>
+          </tr>
+        </thead>
+
+        <tbody id="table_admin">
+          
+        </tbody>
+      </table>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', async() => {
+        if(!localStorage.getItem('token')) {
+            window.location.href = "/login"
+        }
+
+        const token = localStorage.getItem('token')
+
+        const response = await fetch('api/v1/user', {
+          method: 'get',
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`
+          }
+        })
+        const data = await response.json()
+        email = data.user.email
+
+        if(email !== "superadmin@test.com") {
+          window.location.href = "/"
+        } 
+      })
+
+      const table = document.getElementById('table_admin')
+      
+      const pintarDatos = (animals)  => {
+        table.innerHTML = ''
+        animals
+          .forEach(a => {
+            table.innerHTML += `
+              <tr>
+                <th scope="row" class="vertical-middle">${a.id}</th>
+                  <td>
+                    <img src="/avatars/${a.foto}" class="card-img-top">
+                  </td>
+                  <td>${a.nombre_animal}</td>
+                  <td>${a.genero_animal}</td>
+                  <td>${a.edad_animal}</td>
+                  <td>${a.tamano}</td>
+                  <td>
+                    <button class="btn btn-danger" onclick="handDelete(${a.id})">Eliminar</button>
+                  </td>
+              </tr>
+        `
+        })
+      }
+
+      document.addEventListener('DOMContentLoaded', async() => {
+        if(!localStorage.getItem('token')) {
+          window.location.href = "/login"
+        }
+
+        const token = localStorage.getItem('token')
+
+        try {
+          const response = await fetch('api/v1/animals', {
+            method: 'get',
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+          })
+
+          const data = await response.json()
+
+          if(!data.ok) {
+            window.location.href = "/login"
+          }
+
+          pintarDatos(data.animals)
+
+        } catch(error) {
+          localStorage.removeItem('token')
+          window.location.href = "/login"
+        }
+      })      
+
+      const handDelete = async(clicked_id) => {
+
+        try {
+          const response = await fetch(`/api/v1/animal/${clicked_id}`, {
+            method: 'delete'
+          })
+          if(!response.ok) {
+            alert('Ha ocurrido un problema')
+          } else {
+            window.location.reload()
+            alert('Ha sido eliminado con éxito')
+          }
+
+        } catch(error) {
+          console.log(error)
+        }
+      }
+
+    </script>
