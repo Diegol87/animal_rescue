@@ -2,7 +2,6 @@ const express = require('express')
 const expressFileUpload = require('express-fileupload')
 const { createUser, loginUser, getUser, editUser, createAnimal, getAnimals, deleteAnimal } = require('../controllers/user.controller')
 const { requireAuth } = require('../middlewares/requireAuth')
-const { requireAdmin } = require('../middlewares/requireAdmin')
 const { requireLogin, requireDatabase, requireDatabaseanimals } = require('../middlewares/requireDatabase')
 
 const router = express.Router()

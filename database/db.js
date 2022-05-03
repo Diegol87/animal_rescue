@@ -95,7 +95,7 @@ const getUserDB = async(email) => {
     }
 }
 
-//Traer el usuarios a tráves del id a la vista profile
+//Traer el usuarios a tráves del id a la vista profile y realizar un put del usuario específico
 const getUseridDB = async(id) => {
     const client = await pool.connect()
 
